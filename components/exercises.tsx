@@ -5,7 +5,7 @@ import { SingleExercise } from "../pages";
 function Exercises() {
   return (
     <div className="max-w-md flex mt-6 flex-col">
-      <h2 className="text-3xl mb-2 text-green-200 underline  decoration-2 underline-offset-4 font-light">
+      <h2 className="text-3xl mb-2 text-yellow-400 underline  decoration-2 underline-offset-4 font-semibold">
         Exercises
       </h2>
       {Object.entries(exercises).map((e) => (

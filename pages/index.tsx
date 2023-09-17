@@ -33,7 +33,7 @@ export const SingleExercise = ({
 
   return (
     <div
-      className="flex justify-between rounded-sm hover:cursor-pointer w-full   text-green-100  bg-green-600 m-1 "
+      className="flex justify-between rounded-md hover:cursor-pointer w-full   text-white  bg-zinc-900 my-1 "
       key={ex.name}
       onClick={() => router.push(`/exercise/${ex.id}`)}
     >
@@ -43,7 +43,7 @@ export const SingleExercise = ({
         {ex.type.map((t) => (
           <span
             key={t}
-            className=" uppercase  my-auto text-xs font-medium mr-2 px-2.5 py-0.5 rounded bg-green-900 text-green-300"
+            className=" uppercase  my-auto text-xs font-medium mr-2 px-2.5 py-0.5 rounded bg-zinc-800 text-blue-400"
           >
             {t}
           </span>
@@ -62,10 +62,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="min-h-screen   flex flex-col items-center    bg-green-900">
-        <div className="max-w-3xl w-full pb-8 flex flex-col items-center  bg-green-800">
-          <NavBar />
-
+      <NavBar />
+      <main className="min-h-screen   flex flex-col items-center    bg-black">
+        <div className="max-w-3xl w-full pb-8 flex flex-col items-center  ">
           {/* <h1 className="text-3xl font-bold underline ">
             {new Date().toLocaleDateString("en-GB")}
           </h1> */}
@@ -77,7 +76,7 @@ export default function Home() {
           <Exercises />
         </div>
       </main>
-      <div className="py-8 flex text-lg font-light flex-col items-center text-white bg-emerald-700">
+      <div className="py-8 flex text-lg font-light flex-col items-center text-white bg-zinc-900">
         {" "}
         Bye
       </div>

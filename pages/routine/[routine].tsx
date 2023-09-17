@@ -22,69 +22,50 @@ export default function Routine() {
   }
 
   return (
-    <div className="min-h-screen w-full bg-stone-900  text-white flex flex-col items-center">
+    <div className="min-h-screen w-full bg-black  text-white flex flex-col items-center">
+      <NavBar />
       {routine ? (
-        <div className="flex flex-col w-full max-w-3xl  items-center bg-green-800">
-          <NavBar />
+        <div className="flex flex-col  w-full max-w-3xl px-2  items-center ">
           <div className="max-w-lg  py-6 flex flex-col items-center w-full ">
-            {/* <h2>{routine.name}</h2> */}
             <div className="w-full">
-              {routine.steps.length > 1 ? (
+              {routine.steps.length ? (
                 <div>
-                  <h1 className="text-2xl font-light text-green-100">
+                  <h1 className="text-3xl mb-2 text-yellow-400   font-semibold">
                     {routine.name}
                   </h1>
-
+                  {routine.info ? (
+                    <p className="my-4 text-zinc-300"> {routine.info}</p>
+                  ) : null}
                   <div>
                     {routine.steps.map((s) => (
                       <div
-                        className="border-t-2 border-green-300 mt-7 pt-1"
+                        className="border-t-2 border-yellow-400 mt-7 pt-1"
                         key={s.id}
                       >
                         {s.name ? (
-                          <h2 className="text-xl font-light text-green-100">
+                          <h2 className="text-xl my-1 font-semibold text-yellow-400">
                             {s.name}
                           </h2>
                         ) : null}
 
-                        {s.info ? <p className="my-4"> {s.info}</p> : null}
+                        {s.info ? (
+                          <p className="my-4 text-zinc-300"> {s.info}</p>
+                        ) : null}
 
-                        {s.exercises.map((e) => (
-                          <SingleExercise
-                            ex={e}
-                            handleDone={() => null}
-                            key={e.id}
-                          />
-                        ))}
+                        <div className="mt-1">
+                          {s.exercises.map((e) => (
+                            <SingleExercise
+                              ex={e}
+                              handleDone={() => null}
+                              key={e.id}
+                            />
+                          ))}
+                        </div>
                       </div>
                     ))}
                   </div>
                 </div>
-              ) : (
-                <div>
-                  <h2 className="text-xl font-light text-green-100">
-                    {routine.name}
-                  </h2>
-                  {routine.info ? (
-                    <p className="my-4"> {routine.info}</p>
-                  ) : null}
-                  <div>
-                    {routine.steps.map((s) => (
-                      <div key={s.id}>
-                        {s.info ? <div>step info: {s.info}</div> : null}
-
-                        {s.exercises.map((e) => (
-                          <SingleExercise
-                            ex={e}
-                            handleDone={() => null}
-                            key={e.id}
-                          />
-                        ))}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+              ) : null}
             </div>
           </div>
         </div>

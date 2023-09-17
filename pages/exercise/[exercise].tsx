@@ -19,21 +19,27 @@ export default function Routine() {
   }
 
   return (
-    <div className="min-h-screen w-full bg-stone-900  text-white flex flex-col items-center">
+    <div className="min-h-screen w-full bg-black  text-white flex flex-col items-center">
+      <NavBar />
       {exercise ? (
-        <div className="flex flex-col w-full max-w-3xl  items-center bg-green-800">
-          <NavBar />
-          <div className="max-w-lg flex flex-col py-6 items-center w-full ">
-            <SingleExercise
-              ex={exercise}
-              key={exercise.name}
-              handleDone={() => null}
-            />
+        <div className="flex flex-col w-full max-w-3xl px-2  items-center ">
+          <div className="max-w-lg flex flex-col py-6  w-full ">
+            <h2 className="text-3xl mb-2 text-yellow-400   font-semibold">
+              {exercise.name}
+            </h2>
+
+            <div className="text-lg flex items-baseline ">
+              {" "}
+              <div>Muscles:</div>
+              <div className="text-base ml-1 font-bold">
+                {exercise.type.map((t) => `${t.toUpperCase()}, `)}
+              </div>
+            </div>
 
             {exercise.info ? (
-              <div className="mt-4 w-full border-2 border-green-300">
-                <h3 className=" text-center w-full bg-green-500"> info</h3>
-                <div className="p-2"> {exercise.info}</div>
+              <div className="mt-4">
+                <h3 className="text-yellow-400 text-xl"> Notes</h3>
+                <p> {exercise.info}</p>
               </div>
             ) : null}
           </div>
