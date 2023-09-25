@@ -37,9 +37,19 @@ export default function Routine() {
             </div>
 
             {exercise.info ? (
-              <div className="mt-4">
+              <div className="mt-4 border-t-2 border-yellow-400 pt-2">
                 <h3 className="text-yellow-400 text-xl"> Notes</h3>
                 <p> {exercise.info}</p>
+              </div>
+            ) : null}
+            {exercise.youtube ? (
+              <div className="mt-4 border-t-2 border-yellow-400 pt-4">
+                <iframe
+                  className=" h-56 w-full sm:h-80"
+                  src={`https://www.youtube-nocookie.com/embed/${exercise.youtube}`}
+                  allowFullScreen
+                  frameBorder="0"
+                ></iframe>
               </div>
             ) : null}
           </div>

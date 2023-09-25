@@ -14,7 +14,7 @@
 
 
 
-export type Exercise = { name: string; type: ExerciseType[]; id: string, info?: string };
+export type Exercise = { name: string; type: ExerciseType[]; id: string, info?: string, youtube?: string };
 
 
 export type ExerciseType =
@@ -44,7 +44,7 @@ export type Step = {
 export type Routine = {
     id: string,
     name: string,
-    steps: Step[]
+    steps: Step[],
     info?: string
 }
 

@@ -5,7 +5,7 @@ export const exercises: Record<string, Exercise> = {
     bike: { id: "bike", name: "Bike", type: ["cardio"] },
     treadmill: { id: "treadmill", name: "Treadmill", type: ["cardio"] },
     bench_press: { id: "bench_press", name: "Bench Press", type: ["chest"] },
-    squat: { id: "squat", name: "Squat", type: ["leg"], info: "careful" },
+    squat: { id: "squat", name: "Squat", type: ["leg"], info: "careful", youtube: "nhoikoUEI8U" },
     pull_up: { id: "pull_up", name: "Pull Up", type: ["back"] },
     shoulder_press: { id: "shoulder_press", name: "Shoulder Press", type: ["shoulder"] },
     deadlift: { id: "deadlift", name: "Deadlift", type: ["leg", "core"] },
