@@ -1,17 +1,21 @@
-import { useRouter } from "next/router";
+"use client";
+
+import { usePathname } from "next/navigation";
 import React from "react";
 
-import { Routine as RoutineType } from "../../types/constants";
+import { Routine as RoutineType } from "../../../types/constants";
 
 import Link from "next/link";
-import { allRoutines } from "../../db/routines";
-import { SingleExercise } from "..";
-import NavBar from "../../components/navBar";
+import { allRoutines } from "../../../db/routines";
+import { SingleExercise } from "../../../components/singleExercise";
+import NavBar from "../../../components/navBar";
 
 export default function Routine() {
-  const router = useRouter();
+  const router = usePathname();
 
-  let slug = router.query.routine;
+  // console.log("===>", );
+
+  let slug = router?.split("/")[2];
   // console.log("slug =>", slug);
   // console.log(router.query);
 
