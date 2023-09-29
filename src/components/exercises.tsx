@@ -1,5 +1,5 @@
 import React from "react";
-import { exercises } from "../db/exercises";
+import { exercises } from "../../db/exercises";
 import { SingleExercise } from "./singleExercise";
 
 function Exercises() {

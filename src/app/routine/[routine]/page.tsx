@@ -3,10 +3,10 @@
 import { usePathname } from "next/navigation";
 import React from "react";
 
-import { Routine as RoutineType } from "../../../types/constants";
+import { Routine as RoutineType } from "../../../../types/constants";
 
 import Link from "next/link";
-import { allRoutines } from "../../../db/routines";
+import { allRoutines } from "../../../../db/routines";
 import { SingleExercise } from "../../../components/singleExercise";
 import NavBar from "../../../components/navBar";
 

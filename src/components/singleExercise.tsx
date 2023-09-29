@@ -1,5 +1,5 @@
 "use client";
-import { Exercise } from "../types/constants";
+import { Exercise } from "../../types/constants";
 import { useRouter } from "next/navigation";
 
 // type Inputs = {

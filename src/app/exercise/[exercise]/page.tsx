@@ -2,8 +2,8 @@
 
 import { usePathname } from "next/navigation";
 import React from "react";
-import { exercises } from "../../../db/exercises";
-import { Exercise } from "../../../types/constants";
+import { exercises } from "../../../../db/exercises";
+import { Exercise } from "../../../../types/constants";
 import { SingleExercise } from "../../../components/singleExercise";
 import Link from "next/link";
 import NavBar from "../../../components/navBar";

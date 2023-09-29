@@ -1,5 +1,5 @@
 import React from "react";
-import { allRoutines } from "../db/routines";
+import { allRoutines } from "../../db/routines";
 import Link from "next/link";
 
 export default function Routines() {
