@@ -8,7 +8,6 @@ import { Routine as RoutineType } from "../../../../types/constants";
 import Link from "next/link";
 import { allRoutines } from "../../../../db/routines";
 import { SingleExercise } from "../../../components/singleExercise";
-import NavBar from "../../../components/navBar";
 
 export default function Routine() {
   const router = usePathname();
@@ -27,7 +26,6 @@ export default function Routine() {
 
   return (
     <div className="min-h-screen w-full bg-black  text-white flex flex-col items-center">
-      <NavBar />
       {routine ? (
         <div className="flex flex-col  w-full max-w-3xl px-2  items-center ">
           <div className="max-w-lg  py-6 flex flex-col items-center w-full ">
@@ -58,11 +56,7 @@ export default function Routine() {
 
                         <div className="mt-1">
                           {s.exercises.map((e) => (
-                            <SingleExercise
-                              ex={e}
-                              handleDone={() => null}
-                              key={e.id}
-                            />
+                            <SingleExercise ex={e} key={e.id} />
                           ))}
                         </div>
                       </div>

@@ -12,12 +12,7 @@ import { useRouter } from "next/navigation";
 // extract cardio
 // choose by routine, '5x5', core, football
 
-export const SingleExercise = ({
-  ex,
-}: {
-  ex: Exercise;
-  handleDone: (e: Exercise) => void;
-}) => {
+export const SingleExercise = ({ ex }: { ex: Exercise }) => {
   const router = useRouter();
 
   return (

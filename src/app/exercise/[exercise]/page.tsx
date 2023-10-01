@@ -4,9 +4,8 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { exercises } from "../../../../db/exercises";
 import { Exercise } from "../../../../types/constants";
-import { SingleExercise } from "../../../components/singleExercise";
+
 import Link from "next/link";
-import NavBar from "../../../components/navBar";
 
 export default function Routine() {
   const router = usePathname();
@@ -22,7 +21,6 @@ export default function Routine() {
 
   return (
     <div className="min-h-screen w-full bg-black  text-white flex flex-col items-center">
-      <NavBar />
       {exercise ? (
         <div className="flex flex-col w-full max-w-3xl px-2  items-center ">
           <div className="max-w-lg flex flex-col py-6  w-full ">

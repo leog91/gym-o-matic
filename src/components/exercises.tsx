@@ -9,13 +9,7 @@ function Exercises() {
         Exercises
       </h2>
       {Object.entries(exercises).map((e) => (
-        <SingleExercise
-          ex={e[1]}
-          // id={e[1].id}
-          key={e[0]}
-          //   handleDone={handleDone}
-          handleDone={() => null}
-        />
+        <SingleExercise ex={e[1]} key={e[0]} />
       ))}
     </div>
   );

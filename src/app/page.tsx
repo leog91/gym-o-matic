@@ -1,5 +1,3 @@
-"use client";
-
 import Head from "next/head";
 
 // import { allRoutines } from "../db/routines";
@@ -20,7 +18,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavBar />
+
       <main className="min-h-screen   flex flex-col items-center    bg-black">
         <div className="max-w-3xl w-full pb-8 flex flex-col items-center  ">
           {/* <h1 className="text-3xl font-bold underline ">
