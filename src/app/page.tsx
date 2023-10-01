@@ -9,6 +9,7 @@ import Head from "next/head";
 import Routines from "../components/routines";
 import Exercises from "../components/exercises";
 import NavBar from "../components/navBar";
+import StarredRoutines from "../components/starredRoutines";
 
 export default function Home() {
   return (
@@ -28,7 +29,8 @@ export default function Home() {
 
           {/* <Search /> */}
 
-          <Routines />
+          {/* <Routines /> */}
+          <StarredRoutines />
 
           <Exercises />
         </div>
