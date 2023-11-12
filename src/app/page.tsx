@@ -1,12 +1,7 @@
 import Head from "next/head";
 
-// import { allRoutines } from "../db/routines";
-
-// import Search from "../components/search";
-
-import Routines from "../components/routines";
 import Exercises from "../components/exercises";
-import NavBar from "../components/navBar";
+
 import StarredRoutines from "../components/starredRoutines";
 
 export default function Home() {
@@ -25,9 +20,6 @@ export default function Home() {
             {new Date().toLocaleDateString("en-GB")}
           </h1> */}
 
-          {/* <Search /> */}
-
-          {/* <Routines /> */}
           <StarredRoutines />
 
           <Exercises />

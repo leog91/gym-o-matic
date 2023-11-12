@@ -1,0 +1,74 @@
+[
+  {
+    "id": "fiveXFive",
+    "name": "fiveXFive",
+    "steps": [
+      {
+        "name": "5x5",
+        "id": "5x5",
+        "exercises": [
+          "squat",
+          "bench_press",
+          "deadlift",
+          "shoulder_press",
+          "barbell_row"
+        ]
+      }
+    ],
+    "info": "2 days routine test"
+  },
+  {
+    "id": "leg",
+    "name": "Leg",
+    "steps": [{ "id": "leg", "exercises": ["deadlift", "squat"] }],
+    "info": "Leg routine Leg workouts engage the major muscle groups of your body"
+  },
+  {
+    "id": "fullBodyAtHome",
+    "name": "Full Body at Home",
+    "steps": [
+      {
+        "name": "Warm Up: Dynamic Stretches",
+        "id": "warm_up_dynamic_stretches",
+        "exercises": ["shoulder_band", "squat_sky_reach", "deadbugs"]
+      },
+      {
+        "name": "Warm Up: Static bodyline drills",
+        "id": "warm_up_static_bodyline_drills",
+        "exercises": [
+          "plank",
+          "side_plank",
+          "reverse_plank",
+          "hollow_plank",
+          "arch_hold"
+        ]
+      },
+      {
+        "name": "Skill Work",
+        "id": "skill_work",
+        "exercises": ["support_hold", "handstand"]
+      },
+      {
+        "name": "Strength Work",
+        "id": "strength_work",
+        "info": "3 sets of 8 reps.",
+        "exercises": ["push_ups", "rows", "l_sit", "squat", "pull_up", "dips"]
+      }
+    ],
+    "info": "2 days routine test"
+  },
+  {
+    "id": "testMulti",
+    "name": "Test Multi",
+    "steps": [
+      {
+        "name": "Leg",
+        "id": "leg",
+        "info": "Leg routine Leg workouts engage the major muscle groups of your body",
+        "exercises": ["deadlift", "squat"]
+      },
+      { "name": "Core", "id": "core", "exercises": ["deadlift", "barbell_row"] }
+    ],
+    "info": "2 days routine test"
+  }
+]

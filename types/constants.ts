@@ -14,7 +14,13 @@
 
 
 
-export type Exercise = { name: string; type: ExerciseType[]; id: string, info?: string, youtube?: string };
+export type Exercise = {
+    name: string;
+    type: string[];
+    id: string,
+    info?: string,
+    youtube?: string
+};
 
 
 export type ExerciseType =
