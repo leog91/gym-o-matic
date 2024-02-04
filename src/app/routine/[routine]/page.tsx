@@ -21,10 +21,10 @@ export default function Routine() {
   // console.log("slug =>", slug);
   // console.log(router.query);
 
-  let routine: RoutineType | null | undefined = null;
+  // let routine: RoutineType | null | undefined = null;
   let routineb: RoutineResponse | null = null;
   if (slug && typeof slug === "string") {
-    routine = allRoutines.find((r) => r.id === slug);
+    // routine = allRoutines.find((r) => r.id === slug);
     routineb = buildRoutine(slug);
     // console.log("routine =>", routine);
   }

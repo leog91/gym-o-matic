@@ -2,26 +2,16 @@
 
 import React, { useId, useState } from "react";
 import { Routine, Step, Exercise } from "../../../types/constants";
+import {
+  RoutineStructure,
+  Part,
+  PartsExercise,
+  PartsExercises,
+} from "../../utils/utils";
 
 //validate with zod
 
 // type Exercises = string[];
-
-type PartsExercise = { index: number; exercise: string };
-
-type PartsExercises = PartsExercise[];
-
-type Part = {
-  id: string;
-  name: string;
-  exercises: PartsExercises;
-  p_index: number;
-};
-
-type RoutineStructure = {
-  routine: string;
-  parts: Part[];
-};
 
 function Page() {
   const initialState: RoutineStructure = {
@@ -212,6 +202,12 @@ function Page() {
       {/* // */}
       {JSON.stringify(routineStructure, null, 2)}
       {/* // */}
+      <div className="border-red-500 border-2 p-2">
+        <div>plain routine</div>
+        <div>remaining exercises -- copy clipboard</div>
+        <div>duplicated-more info</div>
+        <div>preview</div>
+      </div>
     </main>
   );
 }

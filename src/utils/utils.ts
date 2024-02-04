@@ -64,6 +64,7 @@ export type RoutineResponse =
             id: string;
             name: string;
             info?: string | undefined;
+            // p_index: number;
             steps: {
                 exercises: ExerciseResponse[];
                 id: string;
@@ -95,11 +96,35 @@ export type RoutineResponse =
 
 //     | { msg: string }
 
-type RoutineWithoutStep = {
+
+//add exercise
+export type PartsExercise = { index: number; exercise: string };
+
+export type PartsExercises = PartsExercise[];
+
+export type Part = {
+    id: string;
+    name: string;
+    exercises: PartsExercises;
+    p_index: number;
+};
+
+export type RoutineStructure = {
+    routine: string;
+    parts: Part[];
+};
+//
+
+
+//steps=>parts
+
+
+type RoutineWithoutFullExercise = {
     steps: {
         exercises: string[];
         id: string;
         name?: string;
+        // p_index: number;
         info?: string;
     }[];
     id: string;
@@ -111,7 +136,7 @@ export const buildRoutine = (id: string): RoutineResponse => {
 
 
 
-    const allRoutines: RoutineWithoutStep[] = routines
+    const allRoutines: RoutineWithoutFullExercise[] = routines
 
     const draftRoutine = allRoutines.find(e => e.id === id)
 
