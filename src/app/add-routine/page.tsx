@@ -7,6 +7,7 @@ import {
   Part,
   PartsExercise,
   PartsExercises,
+  RoutineWithoutFullExercise,
 } from "../../utils/utils";
 
 //validate with zod
@@ -121,6 +122,21 @@ function Page() {
       parts: updatedParts,
     });
   };
+
+  // const normalizeRoutineAndExercise = (
+  //   routine: RoutineStructure
+  // ): {
+  //   routine: RoutineWithoutFullExercise;
+  //   Exercise: Exercise;
+  //   } => {
+
+  //   const draft = routine.parts
+  //     .map(p => p.exercises
+  //       .map(e => e.exercise))
+
+  //   return  {routine}
+
+  // };
 
   return (
     <main className="min-h-screen w-full bg-black  text-white flex flex-col items-center">

@@ -6,6 +6,7 @@
       {
         "name": "5x5",
         "id": "5x5",
+        "p_index": 0,
 
         "exercises": [
           "squat",
@@ -22,7 +23,9 @@
   {
     "id": "leg",
     "name": "Leg",
-    "steps": [{ "id": "leg", "exercises": ["deadlift", "squat"] }],
+    "steps": [
+      { "p_index": 0, "id": "leg", "exercises": ["deadlift", "squat"] }
+    ],
     "info": "Leg routine Leg workouts engage the major muscle groups of your body"
   },
   {
@@ -30,12 +33,14 @@
     "name": "Full Body at Home",
     "steps": [
       {
+        "p_index": 0,
         "name": "Warm Up: Dynamic Stretches",
         "id": "warm_up_dynamic_stretches",
 
         "exercises": ["shoulder_band", "squat_sky_reach", "deadbugs"]
       },
       {
+        "p_index": 1,
         "name": "Warm Up: Static bodyline drills",
         "id": "warm_up_static_bodyline_drills",
 
@@ -48,6 +53,7 @@
         ]
       },
       {
+        "p_index": 2,
         "name": "Skill Work",
         "id": "skill_work",
 
@@ -55,6 +61,7 @@
       },
       {
         "name": "Strength Work",
+        "p_index": 3,
         "id": "strength_work",
 
         "info": "3 sets of 8 reps.",
@@ -68,6 +75,7 @@
     "name": "Test Multi",
     "steps": [
       {
+        "p_index": 0,
         "name": "Leg",
 
         "id": "leg",
@@ -76,6 +84,7 @@
       },
       {
         "name": "Core",
+        "p_index": 1,
 
         "id": "core",
         "exercises": ["deadlift", "barbell_row"]

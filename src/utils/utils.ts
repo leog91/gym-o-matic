@@ -32,16 +32,6 @@ import { Exercise } from "../../types/constants"
 export type ExerciseResponse = { data: Exercise | null, status: string }
 
 
-// export const getExerciseById = (id: string): Exercise | { msg: string; } => {
-
-//     const exercise = exercises.find(e => e.id === id) as Exercise
-
-//     if (!exercise) {
-//         console.log(`exercise ${id} notFound`)
-//         return { msg: `exercise ${id} notFound` }
-//     }
-//     return exercise
-// }
 
 export const getExerciseById = (id: string): ExerciseResponse => {
 
@@ -58,43 +48,29 @@ export const getExerciseById = (id: string): ExerciseResponse => {
 
 
 
+type Routine = {
+    id: string;
+    name: string;
+    info?: string | undefined;
+    steps: {
+        exercises: ExerciseResponse[];
+        id: string;
+        name?: string;
+        info?: string;
+        p_index: number
+    }[];
+
+}
+
+
 export type RoutineResponse =
     {
-        data: {
-            id: string;
-            name: string;
-            info?: string | undefined;
-            // p_index: number;
-            steps: {
-                exercises: ExerciseResponse[];
-                id: string;
-                name?: string;
-                info?: string;
-            }[];
-
-        } | null,
+        data?: Routine,
         status: string
     }
 
 
 
-// export type RoutineResponse =
-//     {
-//         id: string;
-//         name: string;
-//         info?: string | undefined;
-//         steps: {
-//             exercises: (Exercise | {
-//                 msg: string;
-//             })[];
-//             id: string;
-//             name?: string;
-//             info?: string;
-//         }[];
-
-//     }
-
-//     | { msg: string }
 
 
 //add exercise
@@ -119,12 +95,12 @@ export type RoutineStructure = {
 //steps=>parts
 
 
-type RoutineWithoutFullExercise = {
+export type RoutineWithoutFullExercise = {
     steps: {
         exercises: string[];
         id: string;
         name?: string;
-        // p_index: number;
+        p_index: number;
         info?: string;
     }[];
     id: string;
@@ -144,7 +120,7 @@ export const buildRoutine = (id: string): RoutineResponse => {
         console.log(`routine ${id} notFound`)
         // return { msg: `routine ${id} notFound` }
 
-        return { status: `routine ${id} notFound`, data: null }
+        return { status: `routine ${id} notFound` }
 
     }
 
