@@ -36,7 +36,9 @@ export default function Routine() {
           <div className="max-w-lg  py-6 flex flex-col items-center w-full ">
             <div className="w-full">
               {/* {} */}
-              {routineb.data !== null && routineb.data.steps.length ? (
+              {routineb.data !== null &&
+              routineb.data !== undefined &&
+              routineb.data.steps.length ? (
                 <div>
                   <h1 className="text-3xl mb-2 text-yellow-400   font-semibold">
                     {routineb.data.name}

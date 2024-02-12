@@ -24,7 +24,7 @@ function Page() {
 
         id: useId(),
         name: "",
-        exercises: [{ index: 0, exercise: "ex_0" }],
+        exercises: [{ index: 0, exercise: `P_0_E_0` }],
         p_index: 0,
       },
     ],
@@ -61,7 +61,9 @@ function Page() {
       name: "",
       id: crypto.randomUUID(),
       //part
-      exercises: [{ index: 0, exercise: "P_0_E_0" }],
+      exercises: [
+        { index: 0, exercise: `P_${routineStructure.parts.length}_E_0` },
+      ],
       p_index: routineStructure.parts.length,
     };
 
