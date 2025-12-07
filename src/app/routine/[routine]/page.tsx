@@ -77,7 +77,7 @@ export default function Routine() {
         </div>
       ) : (
         <div className="flex flex-col h-screen  items-center justify-center">
-          <div className="bg-red-500 p-5 rounded text-xl font-light">
+          <div className="bg-red-500 p-5 rounded-sm text-xl font-light">
             Routine doesn&apos;t exist{" "}
           </div>
           <Link

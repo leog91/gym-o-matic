@@ -30,7 +30,7 @@ export const SingleExercise = ({ ex }: { ex: ExerciseResponse }) => {
         {ex.data.type.map((t) => (
           <span
             key={t}
-            className=" uppercase  my-auto text-xs font-medium mr-2 px-2.5 py-0.5 rounded bg-zinc-800 text-blue-400"
+            className=" uppercase  my-auto text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm bg-zinc-800 text-blue-400"
           >
             {t}
           </span>

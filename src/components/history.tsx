@@ -39,14 +39,14 @@
 //             <div>{new Date(e.date).toLocaleDateString("en-GB")}</div>
 //             <div>
 //               <button
-//                 className="rounded-sm bg-green-300 mx-1"
+//                 className="rounded-xs bg-green-300 mx-1"
 //                 // onClick={() => console.log("edit TODO")}
 //               >
 //                 📝
 //               </button>
 //               <button
 //                 // onClick={() => handleRemoveDone(e)}
-//                 className="bg-red-600 px-2 rounded-sm"
+//                 className="bg-red-600 px-2 rounded-xs"
 //               >
 //                 x
 //               </button>
