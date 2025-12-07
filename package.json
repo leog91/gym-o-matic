@@ -29,7 +29,6 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "postinstall": "prisma generate",
     "start": "next start"
   },
   "version": "0.1.0",
