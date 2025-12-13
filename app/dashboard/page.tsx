@@ -3,7 +3,6 @@
 import { useSession } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import Header from "@/components/Header";
 
 export default function DashboardPage() {
   const { data: session, isPending } = useSession();
@@ -29,7 +28,6 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <Header />
       
       <div className="p-8">
         <div className="max-w-4xl mx-auto">
