@@ -1,8 +1,8 @@
 
-import exercises from "../../db/exercises.json"
-import routines from "../../db/routines.json"
+import exercises from "../db/exercises.json"
+import routines from "../db/routines.json"
 
-import { Exercise } from "../../types/constants"
+import { Exercise } from "../types/constants"
 
 
 

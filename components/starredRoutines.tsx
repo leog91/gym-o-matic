@@ -1,7 +1,8 @@
 import React from "react";
 
-import starredIDs from "../../db/starred.json";
-import { allRoutines } from "../../db/routines";
+import starredIDs from "../db/starred.json";
+import { allRoutines } from "../db/routines";
+
 import Routines from "./routines";
 
 async function getStarred() {
