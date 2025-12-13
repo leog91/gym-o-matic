@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { useSession } from "@/lib/auth-client";
+import { useSession, signOut } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 
 export default function Header() {
@@ -26,8 +26,9 @@ export default function Header() {
     return null;
   }
 
-  const handleSignOut = () => {
-    window.location.href = "/api/auth/sign-out";
+  const handleSignOut = async () => {
+    await signOut();
+    router.push("/sign-in");
   };
 
   const getInitials = (name: string) => {
