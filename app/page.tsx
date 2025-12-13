@@ -14,8 +14,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="min-h-screen   flex flex-col items-center    bg-black">
-        <div className="max-w-3xl w-full pb-8 flex flex-col items-center  ">
+      <main className="min-h-screen flex flex-col items-center bg-black">
+        <div className="max-w-3xl w-full pb-8 flex flex-col items-center">
           {/* <h1 className="text-3xl font-bold underline ">
             {new Date().toLocaleDateString("en-GB")}
           </h1> */}
@@ -25,10 +25,9 @@ export default function Home() {
           <Exercises />
         </div>
       </main>
-      <div className="py-8 flex text-lg font-light flex-col items-center text-white bg-zinc-900">
-        {" "}
+      <footer className="py-8 flex text-lg font-light flex-col items-center text-white bg-zinc-900 border-t border-zinc-800">
         Bye
-      </div>
+      </footer>
     </>
   );
 }

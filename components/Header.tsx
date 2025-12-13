@@ -41,17 +41,16 @@ export default function Header() {
       .slice(0, 2);
   };
 
+  const user = session.user;
+
   return (
-    <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <header className="bg-black border-b border-zinc-800 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-
-
-
           {/* Logo/Brand */}
           <div className="flex items-center">
             <Link href="/" className="hover:opacity-80 transition-opacity">
-              <h1 className="text-xl font-bold text-gray-900">Gym-o-matic</h1>
+              <h1 className="text-xl font-bold text-yellow-400">Gym-o-matic</h1>
             </Link>
           </div>
 
@@ -59,30 +58,30 @@ export default function Header() {
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center space-x-3 hover:bg-gray-50 rounded-lg px-3 py-2 transition"
+              className="flex items-center space-x-3 hover:bg-zinc-900 rounded-lg px-3 py-2 transition"
             >
               {/* Avatar */}
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-sm">
-                {session.user.image ? (
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-black font-bold text-sm">
+                {user.image ? (
                   <img
-                    src={session.user.image}
-                    alt={session.user.name}
+                    src={user.image}
+                    alt={user.name}
                     className="w-8 h-8 rounded-full"
                   />
                 ) : (
-                  getInitials(session.user.name)
+                  getInitials(user.name)
                 )}
               </div>
 
               {/* Name and Email */}
               <div className="hidden md:block text-left">
-                <p className="text-sm font-medium text-gray-900">{session.user.name}</p>
-                <p className="text-xs text-gray-500">{session.user.email}</p>
+                <p className="text-sm font-medium text-white">{user.name}</p>
+                <p className="text-xs text-zinc-400">{user.email}</p>
               </div>
 
               {/* Dropdown Icon */}
               <svg
-                className={`w-4 h-4 text-gray-500 transition-transform ${
+                className={`w-4 h-4 text-zinc-400 transition-transform ${
                   isDropdownOpen ? "rotate-180" : ""
                 }`}
                 fill="none"
@@ -100,11 +99,11 @@ export default function Header() {
 
             {/* Dropdown Menu */}
             {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-1">
+              <div className="absolute right-0 mt-2 w-64 bg-zinc-900 rounded-lg shadow-xl border border-zinc-800 py-1">
                 {/* User Info (mobile) */}
-                <div className="md:hidden px-4 py-3 border-b border-gray-100">
-                  <p className="text-sm font-medium text-gray-900">{session.user.name}</p>
-                  <p className="text-xs text-gray-500">{session.user.email}</p>
+                <div className="md:hidden px-4 py-3 border-b border-zinc-800">
+                  <p className="text-sm font-medium text-white">{user.name}</p>
+                  <p className="text-xs text-zinc-400">{user.email}</p>
                 </div>
 
                 {/* Menu Items */}
@@ -113,7 +112,7 @@ export default function Header() {
                     router.push("/dashboard");
                     setIsDropdownOpen(false);
                   }}
-                  className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-2"
+                  className="w-full text-left px-4 py-2 text-sm text-zinc-300 hover:bg-zinc-800/50 hover:text-white flex items-center space-x-2 transition-colors"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
@@ -131,7 +130,7 @@ export default function Header() {
                     router.push("/settings");
                     setIsDropdownOpen(false);
                   }}
-                  className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-2"
+                  className="w-full text-left px-4 py-2 text-sm text-zinc-300 hover:bg-zinc-800/50 hover:text-white flex items-center space-x-2 transition-colors"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
@@ -150,11 +149,11 @@ export default function Header() {
                   <span>Settings</span>
                 </button>
 
-                <hr className="my-1 border-gray-100" />
+                <hr className="my-1 border-zinc-800" />
 
                 <button
                   onClick={handleSignOut}
-                  className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center space-x-2"
+                  className="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-red-900/20 flex items-center space-x-2 transition-colors"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path

@@ -26,49 +26,51 @@ export default function DashboardPage() {
     return null;
   }
 
+  const user = session.user;
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen">
       
       <div className="p-8">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
+          <div className="bg-zinc-900 rounded-2xl shadow-lg border border-zinc-800 p-8 mb-6">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                Welcome, {session.user.name}! 👋
+              <h1 className="text-3xl font-bold text-white mb-2">
+                Welcome, {user.name}! 👋
               </h1>
-              <p className="text-gray-600">Here's your account information</p>
+              <p className="text-zinc-400">Here's your account information</p>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Account Details</h2>
+          <div className="bg-zinc-900 rounded-2xl shadow-lg border border-zinc-800 p-8">
+            <h2 className="text-2xl font-bold text-white mb-6">Account Details</h2>
             
             <div className="space-y-4">
-              <div className="border-b pb-4">
-                <label className="block text-sm font-medium text-gray-500 mb-1">Name</label>
-                <p className="text-lg text-gray-900">{session.user.name}</p>
+              <div className="border-b border-zinc-800 pb-4">
+                <label className="block text-sm font-medium text-zinc-500 mb-1">Name</label>
+                <p className="text-lg text-white">{user.name}</p>
               </div>
 
-              <div className="border-b pb-4">
-                <label className="block text-sm font-medium text-gray-500 mb-1">Email</label>
-                <p className="text-lg text-gray-900">{session.user.email}</p>
+              <div className="border-b border-zinc-800 pb-4">
+                <label className="block text-sm font-medium text-zinc-500 mb-1">Email</label>
+                <p className="text-lg text-white">{user.email}</p>
               </div>
 
-              <div className="border-b pb-4">
-                <label className="block text-sm font-medium text-gray-500 mb-1">Email Verified</label>
+              <div className="border-b border-zinc-800 pb-4">
+                <label className="block text-sm font-medium text-zinc-500 mb-1">Email Verified</label>
                 <p className="text-lg">
-                  {session.user.emailVerified ? (
-                    <span className="text-green-600 font-medium">✓ Verified</span>
+                  {user.emailVerified ? (
+                    <span className="text-green-500 font-medium">✓ Verified</span>
                   ) : (
-                    <span className="text-orange-600 font-medium">⚠ Not verified</span>
+                    <span className="text-yellow-500 font-medium">⚠ Not verified</span>
                   )}
                 </p>
               </div>
 
-              <div className="border-b pb-4">
-                <label className="block text-sm font-medium text-gray-500 mb-1">Account Created</label>
-                <p className="text-lg text-gray-900">
-                  {new Date(session.user.createdAt).toLocaleDateString('en-US', {
+              <div className="border-b border-zinc-800 pb-4">
+                <label className="block text-sm font-medium text-zinc-500 mb-1">Account Created</label>
+                <p className="text-lg text-white">
+                  {new Date(user.createdAt).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
@@ -77,9 +79,9 @@ export default function DashboardPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-500 mb-1">User ID</label>
-                <p className="text-sm text-gray-600 font-mono bg-gray-50 p-2 rounded">
-                  {session.user.id}
+                <label className="block text-sm font-medium text-zinc-500 mb-1">User ID</label>
+                <p className="text-sm text-zinc-400 font-mono bg-zinc-950 p-2 rounded border border-zinc-800">
+                  {user.id}
                 </p>
               </div>
             </div>
