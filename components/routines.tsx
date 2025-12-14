@@ -2,7 +2,7 @@ import React from "react";
 // import { allRoutines } from "../../db/routines";
 import Link from "next/link";
 
-import { Routine } from "../../types/constants";
+import { Routine } from "../types/constants";
 
 export default function Routines({
   name,
