@@ -127,6 +127,28 @@ export default function Header() {
 
                
 
+                <button
+                  onClick={() => {
+                    router.push("/add-routine");
+                    setIsDropdownOpen(false);
+                  }}
+                  className="w-full text-left px-4 py-2 text-sm text-zinc-300 hover:bg-zinc-800/50 hover:text-white flex items-center space-x-2 transition-colors"
+                >
+                  <span className="text-lg">📝</span>
+                  <span>Create Routine</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    router.push("/add-exercise");
+                    setIsDropdownOpen(false);
+                  }}
+                  className="w-full text-left px-4 py-2 text-sm text-zinc-300 hover:bg-zinc-800/50 hover:text-white flex items-center space-x-2 transition-colors"
+                >
+                  <span className="text-lg">💪</span>
+                  <span>Add Exercise</span>
+                </button>
+
                 <hr className="my-1 border-zinc-800" />
 
                 <button

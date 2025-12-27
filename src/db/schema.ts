@@ -61,6 +61,7 @@ export const exercises = sqliteTable("exercises", {
     types: text("types", { mode: "json" }).$type<string[]>(), // Store as JSON array
     info: text("info"),
     youtube: text("youtube"),
+    userId: text("user_id").references(() => user.id, { onDelete: "cascade" }), // System exercises have null userId
 });
 
 export const routines = sqliteTable("routines", {

@@ -12,7 +12,14 @@
 
 
 
+export const EXERCISE_TYPES = [
+    "chest", "back", "shoulder", "leg", "core",
+    "cardio", "calisthenics", "treadmill", "warm up",
+    "wrist", "triceps", "glutes", "lower back"
+] as const;
 
+
+export type ExerciseType = typeof EXERCISE_TYPES[number];
 
 export type Exercise = {
     name: string;
@@ -21,22 +28,6 @@ export type Exercise = {
     info?: string,
     youtube?: string
 };
-
-
-export type ExerciseType =
-    | "chest"
-    | "back"
-    | "shoulder"
-    | "leg"
-    | "core"
-    | "cardio"
-    | "calisthenics"
-    | "treadmill"
-    | "warm up"
-    | "wrist"
-    | "triceps"
-
-    ;
 
 
 export type Step = {

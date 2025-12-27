@@ -1,8 +1,16 @@
 import React from "react";
 import Link from "next/link";
 import { SingleExercise } from "../../../components/singleExercise";
-import { buildRoutine } from "../../../utils/utils";
-import { RoutineResponse } from "../../../utils/utils";
+import { buildRoutine, RoutineResponse } from "../../../utils/utils";
+import { auth } from "../../../auth";
+import { headers } from "next/headers";
+import { db } from "../../../db"; 
+import { routines } from "../../../db/schema";
+import { eq } from "drizzle-orm";
+import DeleteButton from "../../../components/DeleteButton";
+import { deleteRoutine } from "../../../actions/routines";
+
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 
 export default async function Routine(props: { params: Promise<{ routine: string }> }) {
   const params = await props.params;
@@ -12,16 +20,50 @@ export default async function Routine(props: { params: Promise<{ routine: string
     routineb = await buildRoutine(params.routine);
   }
 
+  const session = await auth.api.getSession({
+      headers: await headers()
+  });
+
+  // Check permissions separately since buildRoutine doesn't expose userId
+  let canEdit = false;
+  if (session?.user && params.routine) {
+        const routineMeta = await db.query.routines.findFirst({
+            where: eq(routines.id, params.routine)
+        });
+        if (routineMeta) {
+            canEdit = routineMeta.userId === session.user.id || session.user.email === ADMIN_EMAIL;
+        }
+  }
+
   return (
     <div className="min-h-screen w-full bg-black  text-white flex flex-col items-center">
       {routineb && routineb.status === "ok" && routineb.data ? (
         <div className="flex flex-col  w-full max-w-3xl px-2  items-center ">
-          <div className="max-w-lg  py-6 flex flex-col items-center w-full ">
+          <div className="max-w-lg  py-6 flex flex-col items-center w-full relative">
+            
+            <Link href="/" className="absolute top-2 left-0 text-white hover:text-yellow-400 transition-colors">
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
+                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+               </svg>
+            </Link>
+
+            {canEdit && (
+                 <div className="absolute top-2 right-0 flex gap-2">
+                     <Link 
+                        href={`/edit-routine/${routineb.data.id}`}
+                        className="bg-zinc-800 text-yellow-400 px-3 py-1 rounded text-sm hover:bg-zinc-700"
+                     >
+                        Edit
+                     </Link>
+                     <DeleteButton id={routineb.data.id} onDelete={deleteRoutine} label="Delete" />
+                 </div>
+             )}
+
             <div className="w-full">
               {/* {} */}
               {routineb.data ? (
                 <div>
-                  <h1 className="text-3xl mb-2 text-yellow-400   font-semibold">
+                  <h1 className="text-3xl mb-2 mt-12 text-yellow-400   font-semibold">
                     {routineb.data.name}
                   </h1>
                   {routineb.data.info ? (

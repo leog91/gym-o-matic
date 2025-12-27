@@ -18,7 +18,7 @@ export default function Routines({
       </h2>
       <ul>
         {routines.map((ar) => (
-          <li key={ar.name}>
+          <li key={ar.id}>
             <Link href={`/routine/${ar.id}`}>
               <div className="text-white  my-1 hover:border-l-2 hover:border-yellow-400 border-l-2 border-zinc-900 bg-zinc-900 pl-1 text-lg font-light underline underline-offset-2 rounded-r-md ">
                 {ar.name}
