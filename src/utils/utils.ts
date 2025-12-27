@@ -56,11 +56,13 @@ export type PartsExercises = PartsExercise[];
 export type Part = {
     id: string;
     name: string;
+    info?: string;
     exercises: PartsExercises;
     p_index: number;
 };
 export type RoutineStructure = {
     routine: string;
+    info?: string;
     parts: Part[];
 };
 

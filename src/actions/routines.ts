@@ -19,7 +19,7 @@ export async function createRoutine(data: RoutineStructure) {
         throw new Error("Unauthorized");
     }
 
-    const { routine: routineName, parts } = data;
+    const { routine: routineName, info, parts } = data;
 
     if (!routineName) {
         throw new Error("Routine name is required");
@@ -35,6 +35,7 @@ export async function createRoutine(data: RoutineStructure) {
         await tx.insert(routines).values({
             id: routineId,
             name: routineName,
+            info: info,
             userId: session.user.id,
         });
 
@@ -45,6 +46,7 @@ export async function createRoutine(data: RoutineStructure) {
                 id: stepId,
                 routineId: routineId,
                 name: part.name || `Part ${partIndex + 1}`,
+                info: part.info,
                 order: part.p_index, // or partIndex
             });
 
@@ -126,7 +128,7 @@ export async function updateRoutine(id: string, data: RoutineStructure) {
         throw new Error("Unauthorized to edit this routine");
     }
 
-    const { routine: routineName, parts } = data;
+    const { routine: routineName, info, parts } = data;
     if (!routineName) {
         throw new Error("Routine name is required");
     }
@@ -135,6 +137,7 @@ export async function updateRoutine(id: string, data: RoutineStructure) {
         // 1. Update Routine Metadata
         await tx.update(routines).set({
             name: routineName,
+            info: info,
             updatedAt: new Date(),
         })
             .where(eq(routines.id, id));
@@ -148,6 +151,7 @@ export async function updateRoutine(id: string, data: RoutineStructure) {
                 id: stepId,
                 routineId: id,
                 name: part.name || `Part ${partIndex + 1}`,
+                info: part.info,
                 order: part.p_index,
             });
 
