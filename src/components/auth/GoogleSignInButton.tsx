@@ -1,6 +1,6 @@
 "use client";
 
-import { authClient } from "@/utils/auth-client";
+import { authClient } from "@/lib/auth-client";
 
 interface GoogleSignInButtonProps {
   callbackURL?: string;
