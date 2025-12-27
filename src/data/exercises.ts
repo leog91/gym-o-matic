@@ -1,4 +1,4 @@
-import { Exercise } from "../../types/constants";
+import { Exercise } from "../types/constants";
 
 export const exercises: Record<string, Exercise> = {
 

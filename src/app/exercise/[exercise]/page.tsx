@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import React from "react";
-import { exercises } from "../../../src/data/exercises";
+import { exercises } from "../../../data/exercises";
 import { Exercise } from "../../../types/constants";
 
 import Link from "next/link";

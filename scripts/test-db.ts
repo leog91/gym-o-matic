@@ -1,4 +1,4 @@
-import { db } from "../db";
+import { db } from "../src/db";
 import { sql } from "drizzle-orm";
 import * as dotenv from "dotenv";
 dotenv.config();

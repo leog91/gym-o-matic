@@ -1,4 +1,4 @@
-import { Step, Routine } from "../../types/constants";
+import { Step, Routine } from "../types/constants";
 import { exercises } from "./exercises";
 
 

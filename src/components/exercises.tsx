@@ -1,5 +1,5 @@
 import React from "react";
-import exercises from "../src/data/exercises.json";
+import exercises from "../data/exercises.json";
 import { SingleExercise } from "./singleExercise";
 import { ExerciseResponse } from "../utils/utils";
 

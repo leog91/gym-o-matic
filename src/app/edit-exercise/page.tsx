@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import exercises from "../../src/data/exercises.json";
+import exercises from "../../data/exercises.json";
 import Link from "next/link";
 
 function Page() {

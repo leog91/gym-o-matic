@@ -1,7 +1,7 @@
 import React from "react";
 
-import starredIDs from "../src/data/starred.json";
-import { allRoutines } from "../src/data/routines";
+import starredIDs from "../data/starred.json";
+import { allRoutines } from "../data/routines";
 
 import Routines from "./routines";
 

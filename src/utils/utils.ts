@@ -1,6 +1,6 @@
 
-import exercises from "../src/data/exercises.json"
-import routines from "../src/data/routines.json"
+import exercises from "../data/exercises.json"
+import routines from "../data/routines.json"
 
 import { Exercise } from "../types/constants"
 
