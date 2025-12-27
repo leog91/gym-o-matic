@@ -6,27 +6,6 @@ import { Exercise } from "../types/constants"
 
 
 
-//transform routines
-// console.log(
-//   "dddd Routine",
-//   JSON.stringify(
-//     Object.entries(allRoutines)
-//       .map((rs) => rs[1])
-//       .map((r) => {
-//         return {
-//           ...r,
-//           steps: r.steps.map((s) => {
-//             return { ...s, exercises: s.exercises.map((e) => e.id) };
-//           }),
-//         };
-//       })
-//   )
-// );
-
-
-//to-do
-//const notUsedExercises = ():Exercises[]  => 
-
 
 
 export type ExerciseResponse = { data: Exercise | null, status: string }
