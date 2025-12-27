@@ -53,12 +53,14 @@ export default async function EditRoutinePage(props: { params: Promise<{ id: str
   // Map Routine -> RoutineStructure for the form
   const initialStructure: RoutineStructure = {
       routine: routineData.name,
+      info: routineData.info ?? "",
       parts: routineData.steps.map((s, index) => ({
           id: s.id, // Keep existing ID? Or generate new? 
           // If we want to keep IDs for updates, form needs to support it. 
           // My updateRoutine action currently deletes all steps and recreates them, 
           // so passing these IDs is fine (they won't be used for update-in-place, but for react keys).
           name: s.name || "",
+          info: s.info ?? "",
           p_index: s.p_index,
           exercises: s.exercises.map((exRes, exIndex) => ({
               index: exIndex,
