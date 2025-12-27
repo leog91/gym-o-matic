@@ -1,23 +1,12 @@
-"use client";
-
-import { usePathname } from "next/navigation";
 import React from "react";
-import { exercises } from "../../../data/exercises";
-import { Exercise } from "../../../types/constants";
-
+import { getExerciseById } from "../../../utils/utils";
 import Link from "next/link";
 
-export default function Routine() {
-  const router = usePathname();
+export default async function Routine(props: { params: Promise<{ exercise: string }> }) {
+  const params = await props.params;
 
-  let slug = router?.split("/")[2];
-  // console.log("slug =>", slug);
-  // console.log(router.query);
-
-  let exercise: Exercise | null = null;
-  if (slug && typeof slug === "string") {
-    exercise = exercises[slug];
-  }
+  const exerciseRes = await getExerciseById(params.exercise);
+  const exercise = exerciseRes.data;
 
   return (
     <div className="min-h-screen w-full bg-black  text-white flex flex-col items-center">

@@ -1,43 +1,25 @@
-"use client";
-
-import { usePathname } from "next/navigation";
 import React from "react";
-
-
 import Link from "next/link";
-
 import { SingleExercise } from "../../../components/singleExercise";
 import { buildRoutine } from "../../../utils/utils";
-
 import { RoutineResponse } from "../../../utils/utils";
 
-export default function Routine() {
-  const router = usePathname();
+export default async function Routine(props: { params: Promise<{ routine: string }> }) {
+  const params = await props.params;
 
-  // console.log("===>", );
-
-  let slug = router?.split("/")[2];
-  // console.log("slug =>", slug);
-  // console.log(router.query);
-
-  // let routine: RoutineType | null | undefined = null;
   let routineb: RoutineResponse | null = null;
-  if (slug && typeof slug === "string") {
-    // routine = allRoutines.find((r) => r.id === slug);
-    routineb = buildRoutine(slug);
-    // console.log("routine =>", routine);
+  if (params.routine) {
+    routineb = await buildRoutine(params.routine);
   }
 
   return (
     <div className="min-h-screen w-full bg-black  text-white flex flex-col items-center">
-      {routineb ? (
+      {routineb && routineb.status === "ok" && routineb.data ? (
         <div className="flex flex-col  w-full max-w-3xl px-2  items-center ">
           <div className="max-w-lg  py-6 flex flex-col items-center w-full ">
             <div className="w-full">
               {/* {} */}
-              {routineb.data !== null &&
-              routineb.data !== undefined &&
-              routineb.data.steps.length ? (
+              {routineb.data ? (
                 <div>
                   <h1 className="text-3xl mb-2 text-yellow-400   font-semibold">
                     {routineb.data.name}
