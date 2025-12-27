@@ -1,5 +1,5 @@
 "use client";
-import { Exercise } from "../../types/constants";
+import { Exercise } from "../types/constants";
 import { useRouter } from "next/navigation";
 import { ExerciseResponse } from "../utils/utils";
 
@@ -27,7 +27,7 @@ export const SingleExercise = ({ ex }: { ex: ExerciseResponse }) => {
       <div className="text-lg font-light capitalize ml-1">{ex.data.name}</div>
 
       <div className="flex">
-        {ex.data.type.map((t) => (
+        {ex.data.type && ex.data.type.length > 0 && ex.data.type.map((t) => (
           <span
             key={t}
             className=" uppercase  my-auto text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm bg-zinc-800 text-blue-400"
