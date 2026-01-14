@@ -1,5 +1,3 @@
-import React from "react";
-// import { allRoutines } from "../src/data/routines";
 import Link from "next/link";
 
 import { Routine } from "../types/constants";
