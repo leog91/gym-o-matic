@@ -14,7 +14,10 @@ export default function Header() {
   // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsDropdownOpen(false);
       }
     }
@@ -47,21 +50,18 @@ export default function Header() {
     <header className="bg-black border-b border-zinc-800 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo/Brand */}
           <div className="flex items-center">
             <Link href="/" className="hover:opacity-80 transition-opacity">
               <h1 className="text-xl font-bold text-yellow-400">Gym-o-matic</h1>
             </Link>
           </div>
 
-          {/* User Menu */}
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className="flex items-center space-x-3 hover:bg-zinc-900 rounded-lg px-3 py-2 transition"
             >
-              {/* Avatar */}
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-black font-bold text-sm">
+              <div className="w-8 h-8 rounded-full bg-linear-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-black font-bold text-sm">
                 {user.image ? (
                   <img
                     src={user.image}
@@ -73,13 +73,11 @@ export default function Header() {
                 )}
               </div>
 
-              {/* Name and Email */}
               <div className="hidden md:block text-left">
                 <p className="text-sm font-medium text-white">{user.name}</p>
                 <p className="text-xs text-zinc-400">{user.email}</p>
               </div>
 
-              {/* Dropdown Icon */}
               <svg
                 className={`w-4 h-4 text-zinc-400 transition-transform ${
                   isDropdownOpen ? "rotate-180" : ""
@@ -97,16 +95,13 @@ export default function Header() {
               </svg>
             </button>
 
-            {/* Dropdown Menu */}
             {isDropdownOpen && (
               <div className="absolute right-0 mt-2 w-64 bg-zinc-900 rounded-lg shadow-xl border border-zinc-800 py-1">
-                {/* User Info (mobile) */}
                 <div className="md:hidden px-4 py-3 border-b border-zinc-800">
                   <p className="text-sm font-medium text-white">{user.name}</p>
                   <p className="text-xs text-zinc-400">{user.email}</p>
                 </div>
 
-                {/* Menu Items */}
                 <button
                   onClick={() => {
                     router.push("/dashboard");
@@ -114,7 +109,12 @@ export default function Header() {
                   }}
                   className="w-full text-left px-4 py-2 text-sm text-zinc-300 hover:bg-zinc-800/50 hover:text-white flex items-center space-x-2 transition-colors"
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -124,8 +124,6 @@ export default function Header() {
                   </svg>
                   <span>Profile</span>
                 </button>
-
-               
 
                 <button
                   onClick={() => {
@@ -155,7 +153,12 @@ export default function Header() {
                   onClick={handleSignOut}
                   className="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-red-900/20 flex items-center space-x-2 transition-colors"
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"

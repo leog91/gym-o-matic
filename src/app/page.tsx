@@ -16,10 +16,6 @@ export default function Home() {
 
       <main className="min-h-screen flex flex-col items-center bg-black">
         <div className="max-w-3xl w-full pb-8 flex flex-col items-center">
-          {/* <h1 className="text-3xl font-bold underline ">
-            {new Date().toLocaleDateString("en-GB")}
-          </h1> */}
-
           <StarredRoutines />
 
           <Exercises />
