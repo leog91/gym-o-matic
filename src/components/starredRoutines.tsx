@@ -1,8 +1,10 @@
 import { db } from "../db";
 import Routines from "./routines";
-import { Routine } from "../types/constants";
+import { RoutineView } from "../types/constants";
 import { auth } from "../auth";
 import { headers } from "next/headers";
+import { userFavorites } from "../db/schema";
+import { eq } from "drizzle-orm";
 
 // currently showing all routines
 async function getVisibleRoutines() {
@@ -10,17 +12,19 @@ async function getVisibleRoutines() {
     headers: await headers(),
   });
 
-  // Find all routines that are either system (userId is null) or belong to the current user
-  // const foundRoutines = await db.query.routines.findMany({
-  //     where: or(
-  //         isNull(routines.userId),
-  //         session?.user ? eq(routines.userId, session.user.id) : undefined
-  //     )
-  // });
+  const isLoggedIn = !!session?.user;
 
   const foundRoutines = await db.query.routines.findMany({});
 
-  const result: Routine[] = [];
+  let favoriteIds = new Set<string>();
+  if (isLoggedIn && session?.user) {
+    const favorites = await db.query.userFavorites.findMany({
+      where: eq(userFavorites.userId, session.user.id),
+    });
+    favoriteIds = new Set(favorites.map((f) => f.routineId));
+  }
+
+  const result: RoutineView[] = [];
 
   for (const r of foundRoutines) {
     result.push({
@@ -28,18 +32,23 @@ async function getVisibleRoutines() {
       name: r.name,
       parts: [],
       creator: r.userId,
-    } as unknown as Routine);
+      isFavorite: favoriteIds.has(r.id),
+    } as unknown as RoutineView);
   }
 
-  return result;
+  return { routines: result, isLoggedIn };
 }
 
 export default async function RoutineList() {
-  const visibleRoutines = await getVisibleRoutines();
+  const { routines: visibleRoutines, isLoggedIn } = await getVisibleRoutines();
 
   return (
     <>
-      <Routines name="Routines" routines={visibleRoutines} />
+      <Routines
+        name="Routines"
+        routines={visibleRoutines}
+        isLoggedIn={isLoggedIn}
+      />
     </>
   );
 }

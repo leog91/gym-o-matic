@@ -3,6 +3,7 @@ import Head from "next/head";
 import Exercises from "../components/exercises";
 
 import StarredRoutines from "../components/starredRoutines";
+import FavoriteRoutinesList from "../components/FavoriteRoutinesList";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
 
       <main className="min-h-screen flex flex-col items-center bg-black">
         <div className="max-w-3xl w-full pb-8 flex flex-col items-center">
+          <FavoriteRoutinesList />
           <StarredRoutines />
 
           <Exercises />
