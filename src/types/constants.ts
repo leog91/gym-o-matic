@@ -45,6 +45,10 @@ export type Routine = {
     info?: string
 }
 
+export type RoutineView = Routine & {
+    isFavorite?: boolean
+}
+
 
 
 

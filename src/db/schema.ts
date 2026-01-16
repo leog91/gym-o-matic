@@ -1,4 +1,4 @@
-import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
+import { sqliteTable, text, integer, primaryKey, index } from "drizzle-orm/sqlite-core";
 
 export const user = sqliteTable("user", {
     id: text("id").primaryKey(),
@@ -117,5 +117,35 @@ export const stepExercisesRelations = relations(stepExercises, ({ one }) => ({
     exercise: one(exercises, {
         fields: [stepExercises.exerciseId],
         references: [exercises.id],
+    }),
+}));
+
+export const userFavorites = sqliteTable(
+    "user_favorites",
+    {
+        userId: text("user_id")
+            .notNull()
+            .references(() => user.id, { onDelete: "cascade" }),
+        routineId: text("routine_id")
+            .notNull()
+            .references(() => routines.id, { onDelete: "cascade" }),
+        createdAt: integer("created_at", { mode: "timestamp" })
+            .notNull()
+            .defaultNow(),
+    },
+    (t) => ({
+        pk: primaryKey({ columns: [t.userId, t.routineId] }),
+        userIdIdx: index("user_favorites_user_id_idx").on(t.userId),
+    })
+);
+
+export const userFavoritesRelations = relations(userFavorites, ({ one }) => ({
+    user: one(user, {
+        fields: [userFavorites.userId],
+        references: [user.id],
+    }),
+    routine: one(routines, {
+        fields: [userFavorites.routineId],
+        references: [routines.id],
     }),
 }));
