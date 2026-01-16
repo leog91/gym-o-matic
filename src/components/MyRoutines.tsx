@@ -3,10 +3,10 @@ import Routines from "./routines";
 import { RoutineView } from "../types/constants";
 import { auth } from "../auth";
 import { headers } from "next/headers";
-import { userFavorites, routines } from "../db/schema";
+import { routines, userFavorites } from "../db/schema";
 import { eq } from "drizzle-orm";
 
-async function getUserFavoriteRoutines() {
+async function getUserRoutines() {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -15,39 +15,41 @@ async function getUserFavoriteRoutines() {
     return null;
   }
 
-  // Join userFavorites with routines to get details
-  const favorites = await db
-    .select({
-      id: routines.id,
-      name: routines.name,
-      userId: routines.userId,
-    })
-    .from(userFavorites)
-    .innerJoin(routines, eq(userFavorites.routineId, routines.id))
-    .where(eq(userFavorites.userId, session.user.id));
+  const userCreatedRoutines = await db
+    .select()
+    .from(routines)
+    .where(eq(routines.userId, session.user.id));
 
-  const result: RoutineView[] = favorites.map((r) => ({
+  
+  const favorites = await db
+    .select()
+    .from(userFavorites)
+    .where(eq(userFavorites.userId, session.user.id));
+    
+  const favoriteIds = new Set(favorites.map((f) => f.routineId));
+
+  const result: RoutineView[] = userCreatedRoutines.map((r) => ({
     id: r.id,
     name: r.name,
     parts: [],
     creator: r.userId,
-    isFavorite: true, // By definition, these are favorites
+    isFavorite: favoriteIds.has(r.id),
   } as unknown as RoutineView));
 
   return result;
 }
 
-export default async function FavoriteRoutinesList() {
-  const favoriteRoutines = await getUserFavoriteRoutines();
+export default async function MyRoutines() {
+  const myRoutines = await getUserRoutines();
 
-  if (!favoriteRoutines || favoriteRoutines.length === 0) {
+  if (!myRoutines || myRoutines.length === 0) {
     return null;
   }
 
   return (
     <Routines
-      name="Favorites"
-      routines={favoriteRoutines}
+      name="Your Routines"
+      routines={myRoutines}
       isLoggedIn={true}
     />
   );

@@ -2,6 +2,7 @@
 
 import { useSession } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useEffect } from "react";
 
 export default function DashboardPage() {
@@ -38,7 +39,13 @@ export default function DashboardPage() {
               <h1 className="text-3xl font-bold text-white mb-2">
                 Welcome, {user.name}! 👋
               </h1>
-              <p className="text-zinc-400">Here's your account information</p>
+              <p className="text-zinc-400 mb-4">Here's your account information</p>
+              <Link 
+                href={`/${user.email.split('@')[0]}`}
+                className="inline-block bg-yellow-500 hover:bg-yellow-400 text-black font-semibold py-2 px-4 rounded transition-colors"
+              >
+                View Your Public Profile
+              </Link>
             </div>
           </div>
 
