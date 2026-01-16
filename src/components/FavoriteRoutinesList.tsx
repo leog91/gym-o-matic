@@ -46,7 +46,7 @@ export default async function FavoriteRoutinesList() {
 
   return (
     <Routines
-      name="Your Favorites"
+      name="Favorites"
       routines={favoriteRoutines}
       isLoggedIn={true}
     />
