@@ -1,4 +1,5 @@
 import { sqliteTable, text, integer, primaryKey, index } from "drizzle-orm/sqlite-core";
+import type { ExercisePrescription, PartExecution } from "../types/routines";
 
 export const user = sqliteTable("user", {
     id: text("id").primaryKey(),
@@ -80,6 +81,10 @@ export const routineSteps = sqliteTable("routine_steps", {
         .references(() => routines.id, { onDelete: "cascade" }),
     name: text("name"),
     info: text("info"),
+    execution: text("execution").$type<PartExecution>().notNull().default("straight"),
+    rounds: integer("rounds"),
+    rest: text("rest"),
+    restSeconds: integer("rest_seconds"),
     order: integer("order").notNull(),
 });
 
@@ -91,6 +96,7 @@ export const stepExercises = sqliteTable("step_exercises", {
     exerciseId: text("exercise_id")
         .notNull()
         .references(() => exercises.id, { onDelete: "restrict" }),
+    prescription: text("prescription", { mode: "json" }).$type<ExercisePrescription>(),
     order: integer("order").notNull(),
 });
 

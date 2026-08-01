@@ -101,13 +101,20 @@ export default async function Routine(props: {
                           </h2>
                         ) : null}
 
+                        {s.execution === "superset" || s.execution === "circuit" ? (
+                          <p className="text-sm text-yellow-400">
+                            {s.execution === "superset" ? "Superset" : "Circuit"}: {s.rounds} rounds
+                            {s.rest ? `, ${s.rest} rest after each round` : s.restSeconds ? `, ${s.restSeconds}s rest after each round` : ""}
+                          </p>
+                        ) : null}
+
                         {s.info ? (
                           <p className="my-4 text-zinc-300"> {s.info}</p>
                         ) : null}
 
-                        <div className="mt-1">
+                        <div className="mt-1 space-y-1">
                           {s.exercises.map((e) => {
-                            return <SingleExercise ex={e} key={e.data?.id} />;
+                            return <SingleExercise ex={e} grouped={s.execution !== "straight"} key={e.data?.id} />;
                           })}
                         </div>
                       </div>

@@ -3,8 +3,13 @@ import { db } from "../db";
 import { exercises as exercisesTable, routines as routinesTable, routineSteps, stepExercises } from "../db/schema";
 import { eq, asc } from "drizzle-orm";
 import { Exercise } from "../types/constants";
+import { ExercisePrescription, PartExecution } from "../types/routines";
 
-export type ExerciseResponse = { data: Exercise | null, status: string }
+export type ExerciseResponse = {
+    data: Exercise | null;
+    status: string;
+    prescription?: ExercisePrescription;
+}
 
 export const getExerciseById = async (id: string): Promise<ExerciseResponse> => {
     try {
@@ -35,6 +40,10 @@ type RoutineSteps = {
     id: string;
     name?: string;
     info?: string;
+    execution: PartExecution;
+    rounds?: number;
+    rest?: string;
+    restSeconds?: number;
     p_index: number
 }[];
 
@@ -51,12 +60,20 @@ export type RoutineResponse = {
 }
 
 // Types for form handling (kept from original)
-export type PartsExercise = { index: number; exercise: string };
+export type PartsExercise = {
+    index: number;
+    exercise: string;
+    prescription?: ExercisePrescription;
+};
 export type PartsExercises = PartsExercise[];
 export type Part = {
     id: string;
     name: string;
     info?: string;
+    execution: PartExecution;
+    rounds?: number;
+    rest?: string;
+    restSeconds?: number;
     exercises: PartsExercises;
     p_index: number;
 };
@@ -111,6 +128,10 @@ export const buildRoutine = async (id: string): Promise<RoutineResponse> => {
             id: step.id,
             name: step.name || undefined,
             info: step.info || undefined,
+            execution: step.execution,
+            rounds: step.rounds || undefined,
+            rest: step.rest || undefined,
+            restSeconds: step.restSeconds || undefined,
             p_index: step.order, // Map order to p_index (or index)
             exercises: step.exercises.map(exJoin => {
                 const ex = exJoin.exercise;
@@ -120,7 +141,8 @@ export const buildRoutine = async (id: string): Promise<RoutineResponse> => {
                     data: {
                         ...ex,
                         type: ex.types // Map types -> type
-                    } as unknown as Exercise
+                    } as unknown as Exercise,
+                    prescription: exJoin.prescription || undefined,
                 };
             })
         }));

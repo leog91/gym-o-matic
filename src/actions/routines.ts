@@ -10,6 +10,50 @@ import { RoutineStructure } from "../utils/utils";
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 
+function validateRoutine(data: RoutineStructure) {
+    if (!data.routine.trim()) {
+        throw new Error("Routine name is required");
+    }
+
+    if (data.parts.length === 0) {
+        throw new Error("A routine needs at least one part");
+    }
+
+    for (const part of data.parts) {
+        if (part.exercises.length === 0) {
+            throw new Error("Each part needs at least one exercise");
+        }
+        if (part.execution === "superset" || part.execution === "circuit") {
+            if (part.execution === "superset" && part.exercises.length !== 2) {
+                throw new Error("A superset needs exactly two exercises");
+            }
+            if (part.execution === "circuit" && part.exercises.length < 3) {
+                throw new Error("A circuit needs at least three exercises");
+            }
+            if (!part.rounds || part.rounds < 1) {
+                throw new Error("A superset needs at least one round");
+            }
+        }
+        for (const exercise of part.exercises) {
+            if (!exercise.exercise.trim()) {
+                throw new Error("Exercise name is required");
+            }
+            const prescription = exercise.prescription;
+            if (!prescription) continue;
+            if (prescription.kind === "standard") {
+                if (prescription.sets < 1 || !prescription.reps.trim()) {
+                    throw new Error("Standard sets need a set count and reps");
+                }
+            } else if (
+                prescription.sets.length === 0 ||
+                prescription.sets.some((set) => !set.reps.trim())
+            ) {
+                throw new Error("Each pyramid set needs reps");
+            }
+        }
+    }
+}
+
 export async function createRoutine(data: RoutineStructure) {
     const session = await auth.api.getSession({
         headers: await headers(),
@@ -21,9 +65,7 @@ export async function createRoutine(data: RoutineStructure) {
 
     const { routine: routineName, info, parts } = data;
 
-    if (!routineName) {
-        throw new Error("Routine name is required");
-    }
+    validateRoutine(data);
 
     const routineId =
         routineName.toLowerCase().replace(/\s+/g, "_") +
@@ -47,6 +89,10 @@ export async function createRoutine(data: RoutineStructure) {
                 routineId: routineId,
                 name: part.name || `Part ${partIndex + 1}`,
                 info: part.info,
+                execution: part.execution,
+                rounds: part.execution === "straight" ? undefined : part.rounds,
+                rest: part.execution === "straight" ? undefined : part.rest,
+                restSeconds: part.execution === "straight" ? undefined : part.restSeconds,
                 order: part.p_index, // or partIndex
             });
 
@@ -89,6 +135,7 @@ export async function createRoutine(data: RoutineStructure) {
                         id: crypto.randomUUID(),
                         stepId: stepId,
                         exerciseId: targetEx.id,
+                        prescription: ex.prescription,
                         order: ex.index, // or exIndex
                     });
                 }
@@ -129,9 +176,7 @@ export async function updateRoutine(id: string, data: RoutineStructure) {
     }
 
     const { routine: routineName, info, parts } = data;
-    if (!routineName) {
-        throw new Error("Routine name is required");
-    }
+    validateRoutine(data);
 
     await db.transaction(async (tx) => {
         // 1. Update Routine Metadata
@@ -152,6 +197,10 @@ export async function updateRoutine(id: string, data: RoutineStructure) {
                 routineId: id,
                 name: part.name || `Part ${partIndex + 1}`,
                 info: part.info,
+                execution: part.execution,
+                rounds: part.execution === "straight" ? undefined : part.rounds,
+                rest: part.execution === "straight" ? undefined : part.rest,
+                restSeconds: part.execution === "straight" ? undefined : part.restSeconds,
                 order: part.p_index,
             });
 
@@ -192,6 +241,7 @@ export async function updateRoutine(id: string, data: RoutineStructure) {
                         id: crypto.randomUUID(),
                         stepId: stepId,
                         exerciseId: targetEx.id,
+                        prescription: ex.prescription,
                         order: ex.index,
                     });
                 }

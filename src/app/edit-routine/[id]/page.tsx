@@ -57,10 +57,15 @@ export default async function EditRoutinePage(props: {
       id: s.id,
       name: s.name || "",
       info: s.info ?? "",
+      execution: s.execution,
+      rounds: s.rounds,
+      rest: s.rest,
+      restSeconds: s.restSeconds,
       p_index: s.p_index,
       exercises: s.exercises.map((exRes, exIndex) => ({
         index: exIndex,
         exercise: exRes.data?.name || "Unknown",
+        prescription: exRes.prescription,
       })),
     })),
   };

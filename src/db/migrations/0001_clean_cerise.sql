@@ -1,0 +1,1 @@
+ALTER TABLE `routine_steps` ADD `rest` text;
