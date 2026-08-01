@@ -8,7 +8,7 @@ Built with [Next.js](https://nextjs.org/), [React](https://react.dev/), [TypeScr
 
 - **User authentication** — email/password and Google OAuth via Better Auth.
 - **Exercise library** — browse, add, edit, and search exercises.
-- **Routine builder** — create multi-step routines and link exercises.
+- **Routine builder** — create multi-step routines with optional sets, reps, weights, rest, pyramid sets, supersets, and circuits.
 - **Favorites** — save routines to your personal list.
 - **Public profiles** — view a user's shared routines at `/[username]`.
 - **Dashboard** — manage your own exercises and routines.
@@ -23,12 +23,12 @@ Built with [Next.js](https://nextjs.org/), [React](https://react.dev/), [TypeScr
 | Auth         | Better Auth                        |
 | ORM          | Drizzle ORM                        |
 | Database     | Turso (SQLite)                     |
-| Validation   | Zod                                |
-| Package mgrs | npm / Bun                          |
+| Package manager | Bun (default), npm fallback      |
 
 ## Prerequisites
 
-- Node.js 20+ or [Bun](https://bun.sh/)
+- [Bun](https://bun.sh/) 1.3+
+- Node.js 20+ only when using npm as a fallback
 - A [Turso](https://turso.tech/) database
 - Google OAuth credentials (for Google sign-in)
 
@@ -39,10 +39,11 @@ Built with [Next.js](https://nextjs.org/), [React](https://react.dev/), [TypeScr
 git clone <repo-url>
 cd gym-o-matic
 
-# Install dependencies
-npm install
-# or
+# Install dependencies (default)
 bun install
+
+# npm fallback
+npm install
 ```
 
 ## Environment variables
@@ -77,13 +78,13 @@ Migrations are written to `src/db/migrations`.
 
 ## Running the app
 
-Start the development server:
+Start the development server with Bun:
 
 ```bash
-npm run dev
-# or
 bun dev
 ```
+
+Use `npm run dev` only when Bun is unavailable.
 
 Open [http://localhost:3000](http://localhost:3000).
 
@@ -91,10 +92,12 @@ Open [http://localhost:3000](http://localhost:3000).
 
 | Script         | Description              |
 | -------------- | ------------------------ |
-| `npm run dev`  | Start Next.js dev server |
-| `npm run build`| Build for production     |
-| `npm run start`| Start production server  |
-| `npm run lint` | Run ESLint               |
+| `bun dev`      | Start Next.js dev server |
+| `bun run build`| Build for production     |
+| `bun start`    | Start production server  |
+| `bun run lint` | Run ESLint on application code |
+
+The equivalent `npm run <script>` commands remain supported when needed.
 
 ## Project structure
 
@@ -126,7 +129,3 @@ Make sure `BETTER_AUTH_URL` matches the public URL of your deployment.
 Deploy to any platform that supports Next.js (Vercel, Node server, Docker, etc.).
 
 Before deploying, ensure all environment variables from `.env` are set in your hosting environment and that `BETTER_AUTH_URL` points to your production domain.
-
-## License
-
-[MIT](LICENSE)

@@ -1,6 +1,7 @@
 import { AuthGuard } from "@/components/auth/AuthGuard";
 import { EmailSignUpForm } from "@/components/auth/EmailSignUpForm";
 import { GoogleSignUpButton } from "@/components/auth/GoogleSignUpButton";
+import Link from "next/link";
 
 export default function SignUpPage() {
   return (
@@ -22,9 +23,9 @@ export default function SignUpPage() {
           <GoogleSignUpButton callbackURL="/" />
           <p className="text-center text-sm text-gray-600">
             Already have an account?{" "}
-            <a href="/sign-in" className="text-blue-600 hover:underline">
+            <Link href="/sign-in" className="text-blue-600 hover:underline">
               Sign in
-            </a>
+            </Link>
           </p>
         </div>
       </div>

@@ -3,6 +3,7 @@
 import { EmailSignInForm } from "@/components/auth/EmailSignInForm";
 import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
 import { AuthGuard } from "@/components/auth/AuthGuard";
+import Link from "next/link";
 
 export default function SignIn() {
   return (
@@ -25,10 +26,10 @@ export default function SignIn() {
           <GoogleSignInButton callbackURL="/dashboard" />
 
           <p className="text-center text-sm text-gray-600">
-            Don't have an account?{" "}
-            <a href="/sign-up" className="text-blue-600 hover:underline">
+            Don&apos;t have an account?{" "}
+            <Link href="/sign-up" className="text-blue-600 hover:underline">
               Sign up
-            </a>
+            </Link>
           </p>
         </div>
       </div>
