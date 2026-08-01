@@ -75,14 +75,6 @@ npx drizzle-kit push
 
 Migrations are written to `src/db/migrations`.
 
-### Seed sample data
-
-The repo includes seed data for exercises and routines:
-
-```bash
-npx tsx scripts/seed-data.ts
-```
-
 ## Running the app
 
 Start the development server:
@@ -112,7 +104,6 @@ gym-o-matic/
 │   ├── app/              # Next.js App Router pages
 │   ├── components/       # React components
 │   ├── db/               # Drizzle schema and migrations
-│   ├── data/             # Seed data
 │   ├── lib/              # Utility functions
 │   ├── auth.ts           # Better Auth configuration
 │   └── db.ts             # Database client
